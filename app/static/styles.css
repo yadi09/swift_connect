@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #2c4e58;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+    position: relative;
+}
+
+.new-request-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #0b7285;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.new-request-btn:hover {
+    background-color: #055a68;
+}
+
+main {
+    margin-top: 50px;
+}
+
+input {
+    width: 300px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #2c4e58;
+    border-radius: 5px;
+}
+
+#check-btn {
+    background-color: #2c4e58;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#check-btn:hover {
+    background-color: #1a363e;
+}
+
+#status-result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Request Form Styling */
+.request-form-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.request-form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    text-align: left;
+    position: relative;
+}
+
+.request-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: #2c4e58;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.request-form label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+.request-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.request-form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#submit-btn {
+    background-color: #2c4e58;
+    color: white;
+}
+
+#submit-btn:hover {
+    background-color: #1a363e;
+}
+
+#close-form-btn {
+    background-color: red;
+    color: white;
+}
+
+#close-form-btn:hover {
+    background-color: darkred;
+}

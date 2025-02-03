@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWIFTConnect Onboarding</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>SWIFTConnect Onboarding Automation System</h1>
+        <button class="new-request-btn" id="open-form-btn">New Request</button>
+    </header>
+
+    <main>
+        <h2>Check Request Status</h2>
+        <input type="text" id="request-id" placeholder="Enter Your Request ID">
+        <button id="check-btn">Check</button>
+        <p id="status-result"></p>
+    </main>
+
+    <!-- Request Form (Hidden Initially) -->
+    <div class="request-form-container" id="request-form">
+        <div class="request-form">
+            <h2>Request FORM</h2>
+            <label>Company Name:</label>
+            <input type="text" id="company-name" placeholder="Company Name">
+
+            <label>Business Email:</label>
+            <input type="email" id="business-email" placeholder="Business Email">
+
+            <label>SWIFT Code:</label>
+            <input type="text" id="swift-code" placeholder="SWIFT Code">
+
+            <label>Business Type:</label>
+            <input type="text" id="business-type" placeholder="Business Type">
+
+            <label>Reason for Request:</label>
+            <input type="text" id="reason" placeholder="Reason for Request">
+
+            <button id="submit-btn">Submit</button>
+            <button id="close-form-btn">Close</button>
+        </div>
+    </div>
+
+    <script src="../static/script.js"></script>
+</body>
+
+</html>
