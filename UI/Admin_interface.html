@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar {
+            width: 200px;
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            height: 100vh;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .menu-btn,
+        .logout-btn {
+            background: #34495e;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .logout-btn {
+            margin-top: auto;
+            background: #e74c3c;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #2980b9;
+            color: white;
+        }
+
+        .approve-btn {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .reject-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">LOGO</div>
+        <button class="menu-btn">Dashboard</button>
+        <button class="menu-btn">Requests</button>
+        <button class="menu-btn">Logs</button>
+        <button class="logout-btn">Logout</button>
+    </div>
+    <div class="main-content">
+        <h1 class="title">Admin</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>NO</th>
+                        <th>Company Name</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Company Name</td>
+                        <td class="status pending">Pending</td>
+                        <td>
+                            <button class="approve-btn">Approve</button>
+                            <button class="reject-btn">Reject</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Company Name</td>
+                        <td class="status pending">Pending</td>
+                        <td>
+                            <button class="approve-btn">Approve</button>
+                            <button class="reject-btn">Reject</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".approve-btn").forEach(button => {
+                button.addEventListener("click", (event) => {
+                    event.target.closest("tr").querySelector(".status").innerText = "Approved";
+                    event.target.closest("tr").querySelector(".status").style.color = "green";
+                });
+            });
+
+            document.querySelectorAll(".reject-btn").forEach(button => {
+                button.addEventListener("click", (event) => {
+                    event.target.closest("tr").querySelector(".status").innerText = "Rejected";
+                    event.target.closest("tr").querySelector(".status").style.color = "red";
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
