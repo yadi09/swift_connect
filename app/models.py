@@ -7,7 +7,7 @@ class BusinessRequest(db.Model):
     company_name = db.Column(db.String(255), nullable=False)
     business_email = db.Column(db.String(255), nullable=False, unique=True)
     swift_code = db.Column(db.String(20), nullable=False)
-    business_type = db.Column(db.Enum("Bank", "Financial Institution", "Other"), nullable=False)
+    business_type = db.Column(db.Enum("Bank", "Financial Institution", "Education", "Other"), nullable=False)
     request_reason = db.Column(db.Text, nullable=False)
     request_status = db.Column(db.Enum("Pending", "Approved", "Rejected"), server_default=db.text('Pending'))
     request_id = db.Column(db.String(50), nullable=False, unique=True)

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SWIFTConnect Onboarding</title>
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
@@ -13,16 +13,6 @@
         <h1>SWIFTConnect Onboarding Automation System</h1>
         <button class="new-request-btn" id="open-form-btn">New Request</button>
     </header>
-
-    <!-- Request ID Copy Box (Initially Hidden) -->
-    <div class="request-id-container" id="request-id-container" style="display:none;">
-        <p><strong>Copy this Request ID:</strong></p>
-        <div class="request-id-box">
-            <span id="request-id-box-text"></span>
-            <button class="copy-btn" id="copy-btn">Copy</button>
-        </div>
-        <p id="copy-instruction">You will use this Request ID to see the status of your request.</p>
-    </div>
 
     <main>
         <h2>Check Request Status</h2>
@@ -45,23 +35,17 @@
             <input type="text" id="swift-code" placeholder="SWIFT Code">
 
             <label>Business Type:</label>
-            <select id="business-type">
-                <option value="">Select</option>
-                <option value="Bank">Bank</option>
-                <option value="Financial Institution">Financial Institution</option>
-                <option value="Education">Education</option>
-                <option value="Other">Other</option>
-            </select>
+            <input type="text" id="business-type" placeholder="Business Type">
 
             <label>Reason for Request:</label>
             <input type="text" id="reason" placeholder="Reason for Request">
 
             <button id="submit-btn">Submit</button>
-            <button id="close-form-btn" onclick="handleSubmit()">Close</button>
+            <button id="close-form-btn">Close</button>
         </div>
     </div>
 
-    <script src="../static/script.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>

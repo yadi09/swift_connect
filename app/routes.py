@@ -1,7 +1,7 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
-from .models import BusinessRequest, AdminUser
+from flask import Blueprint, render_template, request, jsonify
+from .models import BusinessRequest
 from . import db
-from flask_login import login_user, logout_user, login_required
+import uuid
 
 bp = Blueprint('main', __name__)
 
@@ -10,40 +10,44 @@ bp = Blueprint('main', __name__)
 def index():
     return render_template('index.html')
 
-# Admin login page
-@bp.route('/login', methods=['GET', 'POST'])
-def login():
-    # Implement admin login here
-    return render_template('login.html')
+# Check request status route
+@bp.route('/check_status/<int:request_id>', methods=['GET'])
+def check_status(request_id):
+    request_record = BusinessRequest.query.get(request_id)
+    if request_record:
+        return jsonify({"status": request_record.request_status})
+    else:
+        return jsonify({"error": "Request ID not found"}), 404
 
-# Admin dashboard route
-@bp.route('/dashboard')
-@login_required
-def dashboard():
-    requests = BusinessRequest.query.all()
-    return render_template('dashboard.html', requests=requests)
+# Submit request route
+@bp.route('/submit_request', methods=['POST'])
+def submit_request():
+    data = request.json  # Get JSON data from frontend
 
-# Approve request route
-@bp.route('/approve/<int:request_id>')
-@login_required
-def approve_request(request_id):
-    request = BusinessRequest.query.get(request_id)
-    if request:
-        request.request_status = 'Approved'
-        db.session.commit()
-        flash('Request approved successfully!', 'success')
-    return redirect(url_for('main.dashboard'))
+    # Extract form data
+    company_name = data.get('company_name')
+    business_email = data.get('business_email')
+    swift_code = data.get('swift_code')
+    business_type = data.get('business_type')
+    request_reason = data.get('request_reason')
 
-# Reject request route
-@bp.route('/reject/<int:request_id>', methods=['GET', 'POST'])
-@login_required
-def reject_request(request_id):
-    request = BusinessRequest.query.get(request_id)
-    if request:
-        # Handle rejection reason and update request status
-        rejection_reason = request.form['reason']
-        request.request_status = 'Rejected'
-        request.rejection_reason = rejection_reason
-        db.session.commit()
-        flash('Request rejected!', 'danger')
-    return redirect(url_for('main.dashboard'))
+    # Validate required fields
+    if not all([company_name, business_email, swift_code, business_type, request_reason]):
+        return jsonify({"message": "All fields are required", "success": False}), 400
+
+    # Create a new request record
+    new_request = BusinessRequest(
+        company_name=company_name,
+        business_email=business_email,
+        swift_code=swift_code,
+        business_type=business_type,
+        request_reason=request_reason,
+        request_status="Pending",  # Default status
+        request_id="BR" + str(uuid.uuid4())[:8]  # Generate a unique request ID
+    )
+
+    # Save to database
+    db.session.add(new_request)
+    db.session.commit()
+
+    return jsonify({"message": "Request submitted successfully!", "success": True, "request_id": new_request.request_id}), 201
