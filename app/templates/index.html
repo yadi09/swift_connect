@@ -29,37 +29,48 @@
         <input type="text" id="request-id" placeholder="Enter Your Request ID">
         <button id="check-btn">Check</button>
         <p id="status-result"></p>
-    </main>
 
-    <!-- Request Form (Hidden Initially) -->
-    <div class="request-form-container" id="request-form">
-        <div class="request-form">
-            <h2>Request FORM</h2>
-            <label>Company Name:</label>
-            <input type="text" id="company-name" placeholder="Company Name">
-
-            <label>Business Email:</label>
-            <input type="email" id="business-email" placeholder="Business Email">
-
-            <label>SWIFT Code:</label>
-            <input type="text" id="swift-code" placeholder="SWIFT Code">
-
-            <label>Business Type:</label>
-            <select id="business-type">
-                <option value="">Select</option>
-                <option value="Bank">Bank</option>
-                <option value="Financial Institution">Financial Institution</option>
-                <option value="Education">Education</option>
-                <option value="Other">Other</option>
-            </select>
-
-            <label>Reason for Request:</label>
-            <input type="text" id="reason" placeholder="Reason for Request">
-
-            <button id="submit-btn">Submit</button>
-            <button id="close-form-btn" onclick="handleSubmit()">Close</button>
+        <!-- Request Status Box (Initially Hidden) -->
+        <div class="status-box" id="status-box">
+            <h3>Request Details</h3>
+            <p><strong>Company Name:</strong> <span id="status-company"></span></p>
+            <p><strong>Business Email:</strong> <span id="status-email"></span></p>
+            <p><strong>SWIFT Code:</strong> <span id="status-swift"></span></p>
+            <p><strong>Business Type:</strong> <span id="status-business-type"></span></p>
+            <p><strong>Reason for Request:</strong> <span id="status-reason"></span></p>
+            <p><strong>Request Status:</strong> <span id="status-text"></span></p>
         </div>
-    </div>
+
+        <!-- Request Form (Hidden Initially) -->
+        <div class="request-form-container" id="request-form">
+            <div class="request-form">
+                <h2>Request FORM</h2>
+                <label>Company Name:</label>
+                <input type="text" id="company-name" placeholder="Company Name">
+
+                <label>Business Email:</label>
+                <input type="email" id="business-email" placeholder="Business Email">
+
+                <label>SWIFT Code:</label>
+                <input type="text" id="swift-code" placeholder="SWIFT Code">
+
+                <label>Business Type:</label>
+                <select id="business-type">
+                    <option value="">Select</option>
+                    <option value="Bank">Bank</option>
+                    <option value="Financial Institution">Financial Institution</option>
+                    <option value="Education">Education</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label>Reason for Request:</label>
+                <input type="text" id="reason" placeholder="Reason for Request">
+
+                <button id="submit-btn">Submit</button>
+                <button id="close-form-btn" onclick="handleSubmit()">Close</button>
+            </div>
+        </div>
+    </main>
 
     <script src="../static/script.js"></script>
 </body>

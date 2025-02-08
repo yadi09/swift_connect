@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const requestIdContainer = document.getElementById("request-id-container");
     const requestIdBoxText = document.getElementById("request-id-box-text");
     const copyBtn = document.getElementById("copy-btn");
+    const statusBox = document.getElementById("status-box");
+    const checkBtn = document.getElementById("check-btn");
+    const requestIdInput = document.getElementById("request-id");
+    const statusText = document.getElementById("status-text");
 
     // Show request form when the open form button is clicked
     document.getElementById("open-form-btn").addEventListener("click", function () {
@@ -69,6 +73,61 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+
+    // Handle "Check" button click
+    checkBtn.addEventListener("click", async function () {
+        const requestId = requestIdInput.value.trim(); // Get the entered request ID
+
+        // Check if the request ID is entered
+        console.log(requestId);
+        if (!requestId) {
+            alert("Please enter a valid Request ID.");
+            return;
+        }
+
+        try {
+            let response = await fetch("/get_request/" + requestId);
+            console.log("0101010", response);
+            let data = await response.json();
+            console.log("000000", data);
+
+            if (data.success) {
+                // Populate the status box with the request details
+                console.log("11111111111", data);
+                document.getElementById('status-company').textContent = data.company_name || 'N/A';
+                document.getElementById('status-email').textContent = data.business_email || 'N/A';
+                document.getElementById('status-swift').textContent = data.swift_code || 'N/A';
+                document.getElementById('status-business-type').textContent = data.business_type || 'N/A';
+                document.getElementById('status-reason').textContent = data.request_reason || 'N/A';
+                document.getElementById('status-text').textContent = data.request_status || 'N/A';
+
+                // Remove any existing status class
+                statusText.classList.remove("pending", "approved", "rejected");
+
+                // Apply the appropriate status class based on request status
+                if (data.request_status.toLowerCase() === "pending") {
+                    statusText.classList.add("pending");
+                } else if (data.request_status.toLowerCase() === "approved") {
+                    statusText.classList.add("approved");
+                } else if (data.request_status.toLowerCase() === "rejected") {
+                    statusText.classList.add("rejected");
+                }
+
+                // Show the status box
+                statusBox.style.display = 'block';
+            } else {
+                // Show error message if request details cannot be fetched
+                alert("Error fetching request details. Please check the Request ID.");
+                statusBox.style.display = 'none'; // Hide status box if there is an error
+                statusResult.textContent = "No request found with the provided ID.";
+            }
+        } catch (error) {
+            console.error("Error fetching request details:", error);
+            alert("Something went wrong while fetching request details.");
+            statusBox.style.display = 'none'; // Hide status box in case of error
+        }
+    });
+
     // Copy Request ID to clipboard when the copy button is clicked
     copyBtn.addEventListener("click", function () {
         const range = document.createRange();
@@ -79,5 +138,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Show confirmation message
         alert("Request ID copied to clipboard!");
+
+        // Remove request-id-container from view
+        requestIdContainer.style.display = "none";
     });
 });

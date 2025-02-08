@@ -34,53 +34,6 @@ main {
     margin-top: 50px;
 }
 
-/* Request ID Copy Box Styling
-.request-id-container {
-    background-color: #e3f2fd;
-    position: fixed;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
-    display: inline-block;
-    text-align: center;
-    width: 80%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border: 2px solid #2c4e58;
-}
-
-.request-id-box {
-    background-color: #fff;
-    padding: 10px;
-    border: 1px solid #2c4e58;
-    display: inline-block;
-    margin-top: 10px;
-    border-radius: 5px;
-    font-size: 20px;
-    color: #2c4e58;
-    font-weight: bold;
-}
-
-.copy-btn {
-    background-color: #0b7285;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: 10px;
-    font-size: 16px;
-}
-
-.copy-btn:hover {
-    background-color: #055a68;
-}
-
-#copy-instruction {
-    font-size: 16px;
-    color: #333;
-    margin-top: 10px;
-} */
-
 
 #request-id-container {
     display: none;
@@ -174,6 +127,57 @@ select {
     font-size: 18px;
     font-weight: bold;
 }
+
+
+/* Request Status Box Styling */
+.status-box {
+    display: none;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: left;
+    transition: all 0.5s ease-in-out;
+    border-left: 6px solid #2c4e58;
+}
+
+.status-box h3 {
+    margin-bottom: 15px;
+    text-align: center;
+    color: #2c4e58;
+}
+
+.status-box p {
+    font-size: 16px;
+    margin: 8px 0;
+    color: #333;
+}
+
+#status-text {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Dynamic Status Colors */
+.pending {
+    color: #ff9800;
+    background: rgba(255, 152, 0, 0.1);
+}
+
+.approved {
+    color: #4CAF50;
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.rejected {
+    color: #f44336;
+    background: rgba(244, 67, 54, 0.1);
+}
+
 
 /* Request Form Styling */
 .request-form-container {
