@@ -1,0 +1,137 @@
+body {
+    display: flex;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    width: 200px;
+    background: #2c3e50;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 100vh;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.menu-btn,
+.logout-btn {
+    background: #34495e;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.logout-btn {
+    margin-top: auto;
+    background: #e74c3c;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.table-container {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #2980b9;
+    color: white;
+}
+
+.approve-btn {
+    background: #2ecc71;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.reject-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.status {
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.pending {
+    color: #f1c40f;
+}
+
+.approved {
+    color: #2ecc71;
+}
+
+.rejected {
+    color: #e74c3c;
+}
+
+/* Profile Box Styling */
+.profile-box {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    width: 250px;
+    display: none;
+    transition: all 0.3s ease-in-out;
+    transform: scale(0.95);
+    z-index: 1000;
+}
+
+.profile-box h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+    border-bottom: #2c3e50 3px solid;
+}
+
+.profile-box p {
+    font-size: 14px;
+    color: #555;
+}
+
+.profile-status {
+    font-weight: bold;
+}
+
+/* Hover Effect */
+.request-row:hover {
+    background: #ecf0f1;
+    cursor: pointer;
+}

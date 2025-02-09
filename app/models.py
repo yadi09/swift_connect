@@ -1,5 +1,6 @@
 from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
 
 class BusinessRequest(db.Model):
     __tablename__ = "BusinessRequests"
@@ -34,7 +35,7 @@ class BusinessRequest(db.Model):
         """Retrieve a business request by request_id"""
         return BusinessRequest.query.filter_by(request_id=request_id).first()
 
-class AdminUser(db.Model):
+class AdminUser(db.Model, UserMixin):
     __tablename__ = "AdminUsers"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -46,7 +47,7 @@ class AdminUser(db.Model):
 
     def set_password(self, password):
         """Hash the password and store it"""
-        self.password_hash = generate_password_hash(password)
+        self.password_hash = generate_password_hash(method="pbkdf2:sha256", salt_length=8, password=password)
 
     def check_password(self, password):
         """Check if the given password matches the stored hash"""

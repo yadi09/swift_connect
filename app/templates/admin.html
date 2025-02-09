@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">LOGO</div>
+        <!-- <button class="menu-btn">Dashboard</button> -->
+        <button class="menu-btn">Requests</button>
+        <!-- <button class="menu-btn">Logs</button> -->
+        <button class="logout-btn">Logout</button>
+    </div>
+    <div class="main-content">
+        <h1 class="title">Requests Page</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>NO</th>
+                        <th>Company Name</th>
+                        <th>Request ID</th>
+                        <th>Business Type</th>
+                        <th>SWIFT Code</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for request in requests %}
+                    <tr class="request-row" data-company="{{ request.company_name }}"
+                        data-request="{{ request.request_id }}" data-business="{{ request.business_type }}"
+                        data-swift="{{ request.swift_code }}" data-reason="{{ request.request_reason }}"
+                        data-status="{{ request.request_status }}">
+                        <td>{{ loop.index }}</td> <!-- Auto number from Jinja -->
+                        <td>{{ request.company_name }}</td>
+                        <td>{{ request.request_id }}</td>
+                        <td>{{ request.business_type }}</td>
+                        <td>{{ request.swift_code }}</td>
+                        <td class="status {{ request.request_status|lower }}">{{ request.request_status }}</td>
+                        <td>
+                            <button class="approve-btn">Approve</button>
+                            <button class="reject-btn">Reject</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Profile Box (Hidden by default, will be dynamically updated) -->
+    <div class="profile-box" id="profileBox">
+        <h3 id="profileCompany"></h3>
+        <p><strong>Request ID:</strong> <span id="profileRequest"></span></p>
+        <p><strong>Business Type:</strong> <span id="profileBusiness"></span></p>
+        <p><strong>SWIFT Code:</strong> <span id="profileSwift"></span></p>
+        <p><strong>Reason:</strong> <span id="profileReason"></span></p>
+        <p><strong>Status:</strong> <span id="profileStatus" {{ request.request_status|lower }}></span></p>
+    </div>
+
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+
+</html>

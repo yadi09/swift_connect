@@ -29,8 +29,8 @@ def create_app():
     login_manager.init_app(app)
 
     @login_manager.user_loader
-    def load_user(user_id):
-        return AdminUser.query.get(user_id)
+    def load_user(admin_email):
+        return AdminUser.query.get(admin_email)
 
     with app.app_context():
         from . import models, routes

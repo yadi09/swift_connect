@@ -44,7 +44,7 @@ def submit_request():
     # Validate required fields
     if not all([company_name, business_email, swift_code, business_type, request_reason]):
         return jsonify({"message": "All fields are required", "success": False}), 400
-    
+
     # Validate email not in use
     if BusinessRequest.query.filter(BusinessRequest.business_email == business_email, BusinessRequest.request_status != "Rejected").first():
         return jsonify({"message": "A request with this email already exists", "success": False}), 400
@@ -73,4 +73,33 @@ def admin():
     all_requests = BusinessRequest().all()
     return render_template('admin.html', requests=all_requests)
 
-# Get all requests route
+# Update request status route
+@bp.route('/update_request', methods=['POST'])
+# @login_required
+def update_request():
+    data = request.json
+    request_id = data.get('request_id')
+    status = data.get('status')
+
+    # Validate required fields
+    if not all([request_id, status]):
+        return jsonify({"message": "All fields are required", "success": False}), 400
+    
+    # Get request record
+    request_record = BusinessRequest.get_by_request_id(request_id)
+    print(request_record)
+    if not request_record:
+        return jsonify({"message": "Request ID not found", "success": False}), 404
+    
+    # Update request status
+    request_record.request_status = status
+    db.session.add(request_record)
+    db.session.commit()
+
+    return jsonify({"message": "Request status updated successfully!", "success": True}), 200
+
+# Error handler for 404
+@bp.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
